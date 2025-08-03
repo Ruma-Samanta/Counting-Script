@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stylish Counter</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px 40px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    #counter {
+      font-size: 3em;
+      margin: 20px 0;
+      font-weight: bold;
+      color: blue;
+      transition: color 0.3s ease;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Simple Counter</h2>
+    <div id="counter">0</div>
+    <div>
+      <button id="increment">Increment</button>
+      <button id="decrement">Decrement</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    let count = 0;
+    const counterDisplay = document.getElementById('counter');
+    const incrementButton = document.getElementById('increment');
+    const decrementButton = document.getElementById('decrement');
+    const resetButton = document.getElementById('reset');
+
+    function updateDisplay() {
+      counterDisplay.textContent = count;
+      if (count > 0) {
+        counterDisplay.style.color = 'green';
+      } else if (count < 0) {
+        counterDisplay.style.color = 'red';
+      } else {
+        counterDisplay.style.color = 'blue';
+      }
+    }
+
+    incrementButton.addEventListener('click', () => {
+      count++;
+      updateDisplay();
+    });
+
+    decrementButton.addEventListener('click', () => {
+      count--;
+      updateDisplay();
+    });
+
+    resetButton.addEventListener('click', () => {
+      count = 0;
+      updateDisplay();
+    });
+
+    // Optional: Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') {
+        count++;
+        updateDisplay();
+      } else if (e.key === 'ArrowDown') {
+        count--;
+        updateDisplay();
+      } else if (e.key.toLowerCase() === 'r') {
+        count = 0;
+        updateDisplay();
+      }
+    });
+  </script>
+</body>
+</html>
